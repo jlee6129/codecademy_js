@@ -1,0 +1,81 @@
+class School {
+  constructor (name,level,numberOfStudents){
+    this._name = name;
+    this._level = level;
+    this._numberOfStudents = numberOfStudents;
+  }
+  
+  get name(){
+    return this._name;
+  }
+  
+  get level(){
+    return this._level;
+  }
+  
+  get numberOfStudents(){
+    return this._numberOfStudents;
+  }
+  
+  quickFacts(){
+    console.log(`${this.name} educates ${this.numberOfStudents} students at the ${this.level} school level.`);
+  }
+  
+  static pickSubstituteTeacher(substituteTeachers){
+    let teachers = substituteTeachers;
+    let randomNum = Math.floor(Math.random()*teachers.length-1);
+    return teachers[randomNum];
+  }
+  
+  set numberOfStudents(value){
+    if(typeof value === 'number' ){
+      return this._numberOfStudents = value;
+    } else{
+      console.log ('Invalid input: numberOfStudents must be set to a number.')
+    } 
+  }
+
+  
+  
+}
+
+class PrimarySchool extends School{
+  constructor(name, numberOfStudents, pickupPolicy){
+    super(name,'primary', numberOfStudents);
+    this._pickupPolicy = pickupPolicy;
+  }
+  
+  get pickupPolicy(){
+    return this._pickupPolicy;
+  }
+  
+}
+
+class MiddleSchool extends School{
+  constructor(name,numberOfStudents){
+    super(name,'MiddleSchool',numberOfStudents);
+  }
+}
+
+class HighSchool extends School{
+  constructor(name, numberOfStudents, sportsTeam){
+    super(name,'highSchool',numberOfStudents);
+    this._sportsTeam = sportsTeam;
+  }
+}
+
+const lorraineHansbury = new PrimarySchool('Lorraine Hansbury',514 ,'Students must be picked up bu a parent, guardian, or a family member over the age of 13.');
+
+console.log(lorraineHansbury);
+
+lorraineHansbury.quickFacts();
+
+console.log(School.pickSubstituteTeacher(['Jamal Crawford', 'Lou Williams', 'J. R. Smith', 'James Harden', 'Jason Terry', 'Manu Ginobli']));
+
+const alSmith = new HighSchool ('Al E. Smith',415,['Baseball', 'Basketball', 'Volleyball', 'Track and Field']);
+
+console.log(alSmith);
+
+const koilee = new MiddleSchool ('Koi M Lee', 'yoyoyo');
+console.log(koilee);
+
